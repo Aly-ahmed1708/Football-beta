@@ -1,0 +1,733 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    color: #222;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Header */
+  header {
+    background: #e63946;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  header h1 {
+    margin-bottom: 10px;
+  }
+  
+  #themeToggle {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    color: #e63946;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  #themeToggle:hover {
+    background: #f1f1f1;
+  }
+  
+  /* Search Bar */
+  .search {
+    margin: 30px auto;
+    text-align: center;
+  }
+  
+  #searchInput {
+    width: 300px;
+    max-width: 90%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+  }
+  
+  #searchInput:focus {
+    border-color: #e63946;
+    box-shadow: 0 0 6px rgba(230, 57, 70, 0.4);
+  }
+  
+  /* Leagues Section */
+  .leagues {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin-top: 10px;
+    flex-grow: 1;
+  }
+  
+  .league-btn {
+    padding: 20px;
+    background: white;
+    border: 2px solid #e63946;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .league-btn:hover {
+    background: #e63946;
+    color: white;
+    transform: translateY(-3px);
+  }
+  
+  /* Footer */
+  footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+    font-size: 14px;
+  }
+  
+  footer p {
+    margin: 5px 0;
+  }
+  
+  /* Dark Mode */
+  body.dark-mode {
+    background: #1a1a1a;
+    color: #eee;
+  }
+  
+  body.dark-mode header {
+    background: #111;
+  }
+  
+  body.dark-mode #themeToggle {
+    background: #333;
+    color: #eee;
+  }
+  
+  body.dark-mode .league-btn {
+    background: #2c2c2c;
+    border-color: #444;
+    color: #eee;
+  }
+  
+  body.dark-mode .league-btn:hover {
+    background: #e63946;
+    color: white;
+  }
+  /* =========================
+   TEAM CARDS (for leagues)
+   ========================= */
+.teams {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 20px;
+  }
+  
+  .team-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .team-card img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 15px;
+  }
+  
+  .team-card h2 {
+    margin-bottom: 10px;
+    color: #e63946;
+  }
+  
+  .team-card p {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  .team-card button {
+    padding: 10px 18px;
+    border: none;
+    background: #e63946;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .team-card button:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+  }
+  
+  /* =========================
+     PLAYER CARDS (for clubs)
+     ========================= */
+  .players {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .player-card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .player-card img {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .player-card h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: #e63946;
+  }
+  
+  .player-card p {
+    font-size: 13px;
+    color: #666;
+  }
+  
+  /* Hover effect */
+  .team-card:hover,
+  .player-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  /* =========================
+     BLACK RIBBON TRIBUTE
+     ========================= */
+  .ribbon {
+    position: fixed;
+    top: 20px;
+    right: -60px;
+    width: 200px;
+    background: black;
+    color: white;
+    text-align: center;
+    transform: rotate(45deg);
+    font-size: 14px;
+    padding: 5px;
+    z-index: 1000;
+  }
+  
+  /* =========================
+     DARK MODE SUPPORT
+     ========================= */
+  body.dark-mode .team-card,
+  body.dark-mode .player-card {
+    background: #2c2c2c;
+    color: #eee;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+  /* Push cards down a bit */
+.teams {
+    margin-top: 40px;
+  }
+  
+  /* Style search box */
+  .search-container {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .search-container input[type="text"] {
+    width: 60%;
+    padding: 10px 15px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .search-container input[type="text"]:focus {
+    border-color: #e63946;
+    box-shadow: 0 0 6px rgba(230, 57, 70, 0.5);
+    outline: none;
+  }
+  
+  /* Footer styling */
+  footer {
+    margin-top: 50px;
+    text-align: center;
+    padding: 15px;
+    background: #f8f8f8;
+    font-size: 14px;
+    color: #444;
+    border-top: 1px solid #ddd;
+  }
+  
+  body.dark-mode footer {
+    background: #222;
+    color: #bbb;
+    border-top: 1px solid #444;
+  }
+  /* =========================
+   CLUB CARDS (inside league pages)
+   ========================= */
+.clubs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    margin-top: 30px;
+  }
+  
+  .club-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .club-card img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 15px;
+  }
+  
+  .club-card h2 {
+    margin-bottom: 10px;
+    color: #e63946;
+  }
+  
+  .club-card p {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #555;
+  }
+  
+  .club-card button {
+    padding: 10px 18px;
+    border: none;
+    background: #e63946;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .club-card button:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+  }
+  
+  /* Dark Mode Support */
+  body.dark-mode .club-card {
+    background: #2c2c2c;
+    color: #eee;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+  
+  body.dark-mode .club-card p {
+    color: #bbb;
+  }
+  /* =========================
+   PLAYER CARDS (Club pages)
+   ========================= */
+.players {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.player-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.player-card img {
+  width: 80px;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.player-card h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #e63946;
+}
+
+.player-card p {
+  font-size: 13px;
+  color: #666;
+}
+
+/* Hover effect */
+.player-card:hover {
+  transform: translateY(-4px);
+}
+
+/* =========================
+   SCHEDULE TABLE
+   ========================= */
+.schedule {
+  margin: 40px auto;
+  width: 90%;
+  max-width: 800px;
+  border-collapse: collapse;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.schedule th,
+.schedule td {
+  padding: 14px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.schedule th {
+  background: #e63946;
+  color: white;
+  font-weight: bold;
+}
+
+.schedule tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.schedule tr:hover {
+  background: #f1f1f1;
+}
+
+/* =========================
+   DARK MODE (Club pages)
+   ========================= */
+body.dark-mode .player-card {
+  background: #2c2c2c;
+  color: #eee;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .player-card p {
+  color: #bbb;
+}
+
+body.dark-mode .schedule th {
+  background: #c82333;
+}
+
+body.dark-mode .schedule,
+body.dark-mode .schedule td {
+  background: #2c2c2c;
+  color: #eee;
+  border-color: #444;
+}
+
+/* =========================
+   FOOTBALL PITCH LINEUP
+   ========================= */
+   .pitch {
+    position: relative;
+    width: 600px;
+    height: 900px;
+    margin: 30px auto;
+    background: linear-gradient(#3a9d3a, #2d7d2d);
+    border: 5px solid white;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  }
+  
+  /* Halfway line */
+  .pitch::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+  }
+  
+  /* Player circles */
+  .player {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 0 8px rgba(0,0,0,0.6);
+    transform: translateX(-50%);
+  }
+  
+  /* =========================
+     FORMATIONS
+     ========================= */
+  
+  /* 🔵 Manchester City (4-1-4-1) */
+  .mancity-pitch .gk { left: 50%; top: 90%; }
+  .mancity-pitch .rb { left: 80%; top: 75%; }
+  .mancity-pitch .cb1 { left: 60%; top: 75%; }
+  .mancity-pitch .cb2 { left: 40%; top: 75%; }
+  .mancity-pitch .lb { left: 20%; top: 75%; }
+  .mancity-pitch .cdm { left: 50%; top: 60%; }
+  .mancity-pitch .rm { left: 80%; top: 45%; }
+  .mancity-pitch .cam1 { left: 40%; top: 45%; }
+  .mancity-pitch .cam2 { left: 60%; top: 45%; }
+  .mancity-pitch .lm { left: 20%; top: 45%; }
+  .mancity-pitch .st { left: 50%; top: 25%; }
+  
+  /* 🔴 Liverpool (4-3-3) */
+  .liverpool-pitch .gk { left: 50%; top: 90%; }
+  .liverpool-pitch .rb { left: 80%; top: 75%; }
+  .liverpool-pitch .cb1 { left: 60%; top: 75%; }
+  .liverpool-pitch .cb2 { left: 40%; top: 75%; }
+  .liverpool-pitch .lb { left: 20%; top: 75%; }
+  .liverpool-pitch .cm1 { left: 40%; top: 60%; }
+  .liverpool-pitch .cm2 { left: 60%; top: 60%; }
+  .liverpool-pitch .cm3 { left: 50%; top: 50%; }
+  .liverpool-pitch .rw { left: 80%; top: 30%; }
+  .liverpool-pitch .st { left: 50%; top: 25%; }
+  .liverpool-pitch .lw { left: 20%; top: 30%; }
+  
+  /* 🔴 Arsenal (4-2-3-1) */
+  .arsenal-pitch .gk { left: 50%; top: 90%; }
+  .arsenal-pitch .rb { left: 80%; top: 75%; }
+  .arsenal-pitch .cb1 { left: 60%; top: 75%; }
+  .arsenal-pitch .cb2 { left: 40%; top: 75%; }
+  .arsenal-pitch .lb { left: 20%; top: 75%; }
+  .arsenal-pitch .cdm1 { left: 40%; top: 60%; }
+  .arsenal-pitch .cdm2 { left: 60%; top: 60%; }
+  .arsenal-pitch .cam { left: 50%; top: 45%; }
+  .arsenal-pitch .rw { left: 80%; top: 30%; }
+  .arsenal-pitch .lw { left: 20%; top: 30%; }
+  .arsenal-pitch .st { left: 50%; top: 20%; }
+  
+  /* 🔵 Chelsea (3-4-3) */
+  .chelsea-pitch .gk { left: 50%; top: 90%; }
+  .chelsea-pitch .cb1 { left: 35%; top: 75%; }
+  .chelsea-pitch .cb2 { left: 50%; top: 75%; }
+  .chelsea-pitch .cb3 { left: 65%; top: 75%; }
+  .chelsea-pitch .lm { left: 20%; top: 55%; }
+  .chelsea-pitch .cm1 { left: 40%; top: 55%; }
+  .chelsea-pitch .cm2 { left: 60%; top: 55%; }
+  .chelsea-pitch .rm { left: 80%; top: 55%; }
+  .chelsea-pitch .lw { left: 20%; top: 30%; }
+  .chelsea-pitch .st { left: 50%; top: 25%; }
+  .chelsea-pitch .rw { left: 80%; top: 30%; }
+  
+  /* 🔴 Manchester United (4-2-3-1) */
+  .manutd-pitch .gk { left: 50%; top: 90%; }
+  .manutd-pitch .rb { left: 80%; top: 75%; }
+  .manutd-pitch .cb1 { left: 60%; top: 75%; }
+  .manutd-pitch .cb2 { left: 40%; top: 75%; }
+  .manutd-pitch .lb { left: 20%; top: 75%; }
+  .manutd-pitch .cdm1 { left: 40%; top: 60%; }
+  .manutd-pitch .cdm2 { left: 60%; top: 60%; }
+  .manutd-pitch .cam { left: 50%; top: 45%; }
+  .manutd-pitch .rw { left: 80%; top: 30%; }
+  .manutd-pitch .lw { left: 20%; top: 30%; }
+  .manutd-pitch .st { left: 50%; top: 20%; }
+  /* Pitch container */
+/* Pitch */
+.pitch {
+  position: relative;
+  width: 500px;
+  height: 700px;
+  margin: 20px auto;
+  background: linear-gradient(#1f7a1f, #2d9b2d);
+  border: 5px solid white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+/* Player circles */
+.player {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  background: white;
+  color: black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+/* GK */
+.gk { bottom: 5%; left: 50%; transform: translateX(-50%); }
+
+/* Back 4 */
+.rb { bottom: 20%; left: 75%; transform: translateX(-50%); }
+.cb1 { bottom: 20%; left: 60%; transform: translateX(-50%); }
+.cb2 { bottom: 20%; left: 40%; transform: translateX(-50%); }
+.lb { bottom: 20%; left: 25%; transform: translateX(-50%); }
+
+/* Midfield 2 */
+.cm1 { bottom: 38%; left: 40%; transform: translateX(-50%); }
+.cm2 { bottom: 38%; left: 60%; transform: translateX(-50%); }
+
+/* CAM */
+.cam { bottom: 55%; left: 50%; transform: translateX(-50%); }
+
+/* Wingers */
+.lw { bottom: 55%; left: 25%; transform: translateX(-50%); }
+.rw { bottom: 55%; left: 75%; transform: translateX(-50%); }
+
+/* ST */
+.st { top: 5%; left: 50%; transform: translateX(-50%); }
+.pitch {
+  position: relative;
+  width: 500px;
+  height: 700px;
+  margin: 20px auto;
+  background: linear-gradient(#1f7a1f, #2d9b2d);
+  border: 5px solid white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.player {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  background: white;
+  color: black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+/* =================== */
+/* 4-2-3-1 formation   */
+/* =================== */
+.formation-4231 .gk { bottom: 5%; left: 50%; transform: translateX(-50%); }
+
+.formation-4231 .rb { bottom: 20%; left: 75%; transform: translateX(-50%); }
+.formation-4231 .cb1 { bottom: 20%; left: 60%; transform: translateX(-50%); }
+.formation-4231 .cb2 { bottom: 20%; left: 40%; transform: translateX(-50%); }
+.formation-4231 .lb { bottom: 20%; left: 25%; transform: translateX(-50%); }
+
+.formation-4231 .cm1 { bottom: 38%; left: 40%; transform: translateX(-50%); }
+.formation-4231 .cm2 { bottom: 38%; left: 60%; transform: translateX(-50%); }
+
+.formation-4231 .cam { bottom: 55%; left: 50%; transform: translateX(-50%); }
+
+.formation-4231 .lw { bottom: 55%; left: 25%; transform: translateX(-50%); }
+.formation-4231 .rw { bottom: 55%; left: 75%; transform: translateX(-50%); }
+
+.formation-4231 .st { top: 5%; left: 50%; transform: translateX(-50%); }
+
+/* =================== */
+/* 4-3-3 formation     */
+/* =================== */
+.formation-433 .gk { bottom: 5%; left: 50%; transform: translateX(-50%); }
+
+.formation-433 .rb { bottom: 20%; left: 75%; transform: translateX(-50%); }
+.formation-433 .cb1 { bottom: 20%; left: 60%; transform: translateX(-50%); }
+.formation-433 .cb2 { bottom: 20%; left: 40%; transform: translateX(-50%); }
+.formation-433 .lb { bottom: 20%; left: 25%; transform: translateX(-50%); }
+
+.formation-433 .cm1 { bottom: 38%; left: 30%; transform: translateX(-50%); }
+.formation-433 .cm2 { bottom: 45%; left: 50%; transform: translateX(-50%); }
+.formation-433 .cm3 { bottom: 38%; left: 70%; transform: translateX(-50%); }
+
+.formation-433 .lw { bottom: 60%; left: 25%; transform: translateX(-50%); }
+.formation-433 .rw { bottom: 60%; left: 75%; transform: translateX(-50%); }
+
+.formation-433 .st { top: 5%; left: 50%; transform: translateX(-50%); }
+
+
+  /* Dark mode */
+  body.dark-mode .player-circle {
+    background: #444;
+    color: #eee;
+  }
+  .league-table {
+    margin: 30px auto;
+    width: 90%;
+    max-width: 900px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .league-table h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 24px;
+  }
+  
+  .league-table table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 16px;
+  }
+  
+  .league-table th {
+    background: #1e3a8a; /* Dark blue */
+    color: #fff;
+    padding: 10px;
+  }
+  
+  .league-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .league-table tr:nth-child(even) {
+    background: #f9f9f9;
+  }
+  
+  .league-table tr:hover {
+    background: #f1f5f9;
+  }
+  
+  
